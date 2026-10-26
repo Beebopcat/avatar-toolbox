@@ -1,8 +1,8 @@
 <#
-  Avatar Tool Hub  -  a tiny always-on-top desktop companion (Jaina) that starts, stops, checks and repairs YOUR tools with one click.
+  Avatar Tool Hub  -  a tiny always-on-top desktop companion (the mascot) that starts, stops, checks and repairs YOUR tools with one click.
   Run:  double-click "Avatar Tool Hub" in the AutoHotkey folder   (or: powershell -STA -File Avatar-Tool-Hub.ps1)
   Your tools live in tools.json next to this file - add a block there to add a tool.
-  Nothing runs until you click. Right-click Jaina (or press the x) to close the hub; your tools keep running.
+  Nothing runs until you click. Right-click the mascot (or press the x) to close the hub; your tools keep running.
   Test switches:  -Snapshot out.png [-Open tools|more]   -ToolsFile other.json   -SelfTest out.txt
 #>
 param([string]$Snapshot = '', [string]$Open = '', [string]$ToolsFile = '', [string]$SelfTest = '', [string]$PickAvatar = '')
@@ -245,9 +245,9 @@ $Extras = @(
            Busy-Anim; Say "Backup saved: $out"
        } }
     @{ Name = 'Open the PC Repair Launcher'; Color = '#79B8FF'
-       Info = 'Opens the Jaina repair widget (deep scan, graphics reset, startup clean-up and more).'
+       Info = 'Opens the repair widget (deep scan, graphics reset, startup clean-up and more).'
        Do = {
-           $l = Join-Path ([Environment]::GetFolderPath('Desktop')) 'Avatar Repair Launcher (Jaina).lnk'
+           $l = Join-Path ([Environment]::GetFolderPath('Desktop')) 'Avatar Repair Launcher.lnk'
            if (Test-Path -LiteralPath $l) { Start-Process $l; Say 'Opening the repair launcher.' } else { Say 'The repair launcher shortcut was not found on the Desktop.' }
        } }
     @{ Name = 'Open Kokoro Player'; Color = '#79B8FF'
@@ -265,7 +265,7 @@ $Extras = @(
            [void][Windows.MessageBox]::Show(($lines -join "`n`n"), 'Hotkey cheat sheet', 'OK', 'Information')
        } }
     @{ Name = 'Start the hub when I sign in'; Color = '#D2A8FF'; Toggle = 'autostart'
-       Info = 'Starts this widget at login (it only shows Jaina; nothing else runs unless you tick "auto" on a tool). Click again to turn it off.'
+       Info = 'Starts this widget at login (it only shows the mascot; nothing else runs unless you tick "auto" on a tool). Click again to turn it off.'
        Do = {
            if (Get-HubAutostart) { Remove-ItemProperty -Path $RunKey -Name 'AvatarToolHub' -ErrorAction SilentlyContinue; Say 'The hub will no longer start at sign-in.' }
            else {

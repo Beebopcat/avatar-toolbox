@@ -466,7 +466,7 @@ $Extras = @(
            [void][Windows.MessageBox]::Show(($lines -join "`n`n"), 'Hotkey cheat sheet', 'OK', 'Information')
        } }
     @{ Name = 'Start the toolbox when I sign in'; Color = '#D2A8FF'; Toggle = 'autostart'
-       Info = 'Starts this widget at login (it only shows Jaina; nothing else runs unless you tick "auto" on a tool). Click again to turn it off.'
+       Info = 'Starts this widget at login (it only shows the mascot; nothing else runs unless you tick "auto" on a tool). Click again to turn it off.'
        Do = {
            if (Get-HubAutostart) { Remove-ItemProperty -Path $RunKey -Name 'AvatarToolbox' -ErrorAction SilentlyContinue; Say 'The toolbox will no longer start at sign-in.' }
            else {
@@ -719,7 +719,7 @@ function Restart-ToolUi($t) {
     Update-Rows
 }
 
-# ===== Panel 2: PC repair and fixes (the Jaina repair widget) =====
+# ===== Panel 2: PC repair and fixes (the repair widget) =====
 $repairPanel = New-Panel
 $infoStack = New-Object Windows.Controls.StackPanel
 $scrollR = New-Object Windows.Controls.ScrollViewer

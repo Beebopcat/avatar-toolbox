@@ -1,8 +1,8 @@
 <#
-  PC Repair Launcher  -  a tiny always-on-top desktop companion (Jaina) with one-click repair helpers.
+  PC Repair Launcher  -  a tiny always-on-top desktop companion (the mascot) with one-click repair helpers.
   Run:  double-click Start-PC-Repair-Launcher.cmd   (or: powershell -STA -File PC-Repair-Launcher.ps1)
   Nothing runs until you click a button. Anything that needs admin shows a Windows UAC prompt first.
-  Right-click Jaina (or press the x) to close.
+  Right-click the mascot (or press the x) to close.
   Test switches:  -Snapshot out.png [-Open info|tools]   renders the widget to a PNG and exits.
 #>
 param([string]$Snapshot = '', [string]$Open = '')

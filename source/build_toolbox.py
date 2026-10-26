@@ -1,4 +1,4 @@
-"""Builds Avatar-Toolbox.ps1 from hub.template.ps1 (tools, checks, avatars) + repair.template.ps1 (the Jaina repair widget's tools).
+"""Builds Avatar-Toolbox.ps1 from hub.template.ps1 (tools, checks, avatars) + repair.template.ps1 (the repair widget's tools).
 Run from anywhere:  python build_toolbox.py"""
 import os
 here = os.path.dirname(os.path.abspath(__file__)); root = os.path.dirname(here)
@@ -18,7 +18,7 @@ def between(text, start, end):
     return text[a:b]
 
 
-# ---- pieces lifted from the Jaina repair widget
+# ---- pieces lifted from the repair widget
 commands = between(rep, "$Commands = @(", "$SpriteB64")
 repair_defs = between(rep, "function Copy-Text", "# ---------------------------------------------------------------- window")
 icon_btn = between(rep, "# Small flat icon button", "# ---------------------------------------------------------------- actions")
@@ -151,11 +151,11 @@ foreach ($x in $Extras) {
 
 function Update-Rows {''')
 
-# ---- repair panel (Jaina's steps + commands + tool list) and the lazy avatar picker replace the old "more" panel
+# ---- repair panel (the repair widget's steps + commands + tool list) and the lazy avatar picker replace the old "more" panel
 a = hub.index("# ===== Panel 2: more tools and repairs =====")
 tail = "[void]$stack.Children.Add($morePanel)"
 b = hub.index(tail) + len(tail)
-hub = hub[:a] + r'''# ===== Panel 2: PC repair and fixes (the Jaina repair widget) =====
+hub = hub[:a] + r'''# ===== Panel 2: PC repair and fixes (the repair widget) =====
 $repairPanel = New-Panel
 $infoStack = New-Object Windows.Controls.StackPanel
 $scrollR = New-Object Windows.Controls.ScrollViewer

@@ -6,6 +6,36 @@
 
 ![Desktop Tools page at the Avatar Toolbox card, with its feature list and View source and Source releases links.](docs/media/site-01.webp)
 
+### Why it matters
+
+IT-support tooling in PowerShell 5.1 and WPF: one small window that starts, stops and health-checks your tools (process and HTTP status checks), and that opens guided repair helpers (for example a graphics reset and the `sfc /scannow` and `DISM` repair steps). Risky actions ask first, only the deep scan asks for administrator permission, and nothing runs until you click.
+
+**Stack:** PowerShell 5.1, WPF, Python (`build_toolbox.py` generator), JSON configuration (`tools.json`).
+
+### Proof
+
+- **Built-in self-test, run on Windows 11 with Windows PowerShell 5.1:** 2 PASS, 0 FAIL, plus 1 informational line. It checks that `tools.json` loads and that the configured tool file exists; it does not test the repair actions.
+- All four PowerShell scripts I parsed (`Avatar-Toolbox.ps1`, both templates and `scripts/Backup-Settings.ps1`) have 0 parse errors, and a headless `-Snapshot` render of the repair panel completed.
+- Screenshots: the project-page capture above and the public-edition preview below.
+
+### Quick start
+
+```powershell
+git clone https://github.com/Beebopcat/avatar-toolbox.git
+cd avatar-toolbox
+powershell.exe -NoProfile -STA -File Avatar-Toolbox.ps1                       # open the toolbox
+powershell.exe -NoProfile -STA -File Avatar-Toolbox.ps1 -SelfTest result.txt  # run the self-test
+```
+
+### Limitations
+
+- Windows only (PowerShell 5.1 and WPF). The self-test's file check expects OCR Boxes at the path in `tools.json`; change that path if you installed it elsewhere, or the check reports a failure.
+- No repair action was run as part of testing, and repairs can change Windows settings, so review each one before you use it.
+- The public edition ships a neutral vector mascot and no avatar artwork. The self-test is a small smoke test, not a full test suite.
+- Built with AI-assisted development.
+
+---
+
 ## What it is
 
 A small Windows PowerShell 5.1 / WPF dashboard for launching tools, checking their status and opening optional repair helpers. OCR Boxes is first in the tool list.
